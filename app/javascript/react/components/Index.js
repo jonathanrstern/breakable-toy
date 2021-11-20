@@ -1,4 +1,5 @@
 import React from "react"
+import FetchFromAPI from "./FetchFromAPI"
 import NavBar from "./NavBar"
 
 const Index = () => {
@@ -6,9 +7,6 @@ const Index = () => {
   return (
     <div>
       <NavBar />
-      <div>
-        
-      </div>
     </div>
   )
 }
