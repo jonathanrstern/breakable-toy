@@ -1,0 +1,45 @@
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+.navbar {
+  display: flex;
+  height: 80px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e8e8e8;
+  justify-content: space-between;
+}
+
+.site-title {
+  display: flex;
+  margin-left: 30px;
+  align-items: center;
+  & a {
+    font-size: 1.8em;
+    color: #336633;
+    text-decoration: none;
+  }
+}
+
+.header-links-wrapper {
+  display: flex;
+  margin-right: 30px;
+  align-items: center;
+}
+
+.header-links {
+  display: flex;
+  list-style: none;
+  margin: 0px;
+  text-decoration: none;
+  & a {
+    color: #336633;
+    font-size: .7em;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+
+.link-wrapper {
+  margin-left: 20px;
+}
