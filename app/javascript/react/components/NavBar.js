@@ -23,12 +23,12 @@ const NavBar = () => {
             </Link>
           </li>
           <li className="link-wrapper">
-            <Link to="/sign-in">
+            <Link to="/users/sign_in">
               Sign In
             </Link>
           </li>
           <li className="link-wrapper">
-            <Link to="/sign-up">
+            <Link to="/users/sign_up">
               Sign Up
             </Link>
           </li>

@@ -1,7 +1,31 @@
+* {
+  font-family: 'Inter', sans-serif;
+}
+
 html {
+  background-color: #ffffff;
   height: 100%;
 }
 
 body {
+  background-color: #ffffff;
+  margin: 0;
   height: 100%;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.flash-notice {
+  text-align: center;
+  margin-top: 10px;
+  color: green;
+}
+
+.flash-alert {
+  text-align: center;
+  margin-top: 10px;
+  color: red;
 }

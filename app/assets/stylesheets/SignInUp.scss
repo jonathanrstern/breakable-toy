@@ -1,0 +1,81 @@
+.sign-in-up-container {
+  width: 500px;
+  margin: 70px auto 40px;
+  padding: 30px;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px 0 rgba(63, 63, 55, .10);
+  background-color: #ffffff;
+}
+
+.main-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #000080;
+}
+
+.field label {
+  font-size: 1em;
+  margin-bottom: 3px;
+}
+
+.field input {
+  border-radius: 5px;
+}
+
+.field em {
+  font-size: .8em;
+}
+
+.profile-picture input {
+  background-color: transparent;
+  border: none;
+  padding: 5px 0px;
+}
+
+.actions {
+  text-align: center;
+}
+
+.actions input {
+  background-color: #000080;
+  border: 1px solid #000080;
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 8px 14px;
+  margin-top: 10px;
+}
+
+.actions input:hover {
+  cursor: pointer;
+  opacity: 85%;
+}
+
+#error_explanation {
+  color: red;
+}
+
+#error_explanation h2 {
+  font-size: 1em;
+}
+
+.cancel-container {
+  margin: 30px auto;
+  color: #000080;
+  width: 500px;
+  padding: 30px;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px 0 rgba(63, 63, 55, .10);
+  background-color: #ffffff;
+}
+
+.cancel-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #000080;
+}
