@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      post 'stocks/search', to: 'stocks#search'
       resources :stocks, only: [:index]
     end
   end
