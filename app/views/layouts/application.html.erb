@@ -7,6 +7,24 @@
   <%= csrf_meta_tags %>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
+
+<div class="top-bar">
+  <h1 class="top-bar-left"><%= link_to 'Stock Tracker', root_path %></h1>
+  <div class="top-bar-right">
+      <% if signed_in? %>
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-link"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+          <li class="small-avatar"><%= link_to image_tag(current_user.avatar.url, width: 30, height: 30), user_path(current_user.id) %></li>
+        </ul>
+      <% else %>
+        <ul class="menu">
+          <li class="menu-link"><%= link_to "Sign In", new_user_session_path %></li>
+          <li class="menu-link"><%= link_to "Sign Up", new_user_registration_path %></li>
+        </ul>
+      <% end %>
+  </div>
+</div>
+
 <body>
 
   <%- flash.each do |key, value| -%>
