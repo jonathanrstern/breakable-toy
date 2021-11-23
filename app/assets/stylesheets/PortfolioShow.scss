@@ -1,0 +1,16 @@
+.show-container {
+  max-width: 600px;
+  margin: 25px auto;
+  .portfolio-name {
+    font-size: 2em;
+    font-weight: 700;
+  }
+  .search-field {
+    width: 300px;
+  }
+  .current-holdings-container h3 {
+    font-size: 1.3em;
+    font-weight: 700;
+    padding: 25px 0px;
+  }
+}
