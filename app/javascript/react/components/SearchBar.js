@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import SearchResult from './SearchResult'
 
 const SearchBar = (props) => {
   const [stocks, setStocks] = useState([])
@@ -35,9 +36,16 @@ const SearchBar = (props) => {
     }
   }
 
-  const list = stocks.map(stock => {
+  const suggestionsList = stocks.map(stock => {
     return (
-      <li>{stock.ticker}, {stock.name}</li>
+      <SearchResult
+        key={stock.id}
+        portfolioHoldings={props.portfolioHoldings}
+        setPortfolioHoldings={props.setPortfolioHoldings}
+        setErrors={props.setErrors}
+        portfolioId={props.portfolioId}
+        stock={stock}
+      />
     )
   })
 
@@ -49,7 +57,7 @@ const SearchBar = (props) => {
 
         <input className="button" type='submit' value='Add' />
       </form>
-      <ul>{list}</ul>
+      <ul>{suggestionsList}</ul>
     </div>
   )
 }
