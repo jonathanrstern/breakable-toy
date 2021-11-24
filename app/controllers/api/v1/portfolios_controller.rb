@@ -6,7 +6,8 @@ class Api::V1::PortfoliosController < ApplicationController
   end
 
   def show
-    render json: Portfolio.find(params[:id])
+    portfolio = Portfolio.find(params[:id])
+    render json: { portfolio: portfolio, holdings: portfolio.stocks }
   end
 
   def create

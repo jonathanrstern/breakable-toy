@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link, Redirect } from "react-router-dom"
+import { generateSlug } from "random-word-slugs"
 
-
+const slug = generateSlug(3, { format: "title" })
 
 const NewPortfolio = () => {
 
@@ -29,23 +30,34 @@ const NewPortfolio = () => {
     } catch (error) {
       console.error(`Error in Fetch: ${error.message}`)
     }
-    // clearForm() 
   }
    
   if (shouldRedirect.status) {
     return <Redirect push to={`/portfolios/${shouldRedirect.id}`} />
   }
+
+  const clickRandomWords = () => {
+    return setPortfolioName(slug)
+  }
   
   return (
-    <div className="new-portfolio-container" onSubmit={onSubmitHandler}>
-      <form className="new-portfolio-form">
-        <label className="form-label" htmlFor="name">
-          Choose a name for your portfolio:
-        </label>
-          <input className="input" type="text" name="name" onChange={handleInputChange} value={portfolioName} />
-
-        <input className="button" type="submit" value="Next" />
-      </form>
+    <div className="new-portfolio-page">
+      <div className="header">
+        Create a new portfolio
+      </div>
+      <div className="description">
+        Once you create a new portfolio, you will be able to add stocks and track their performance
+      </div>
+      <div className="new-portfolio-container" onSubmit={onSubmitHandler}>
+        <form className="new-portfolio-form">
+          <label className="form-label" htmlFor="name">
+            Portfolio name:
+          </label>
+          <input id="new-portfolio-input" className="input" type="text" name="name" onChange={handleInputChange} value={portfolioName} />
+          <p className="form-subtext">Great portfolio names are short and memorable. Need inspiration? How about <b className="random-words" onClick={clickRandomWords}>{slug}</b>?</p>
+          <input className="button" type="submit" value="Create portfolio" />
+        </form>
+      </div>
     </div>
   )
 }
