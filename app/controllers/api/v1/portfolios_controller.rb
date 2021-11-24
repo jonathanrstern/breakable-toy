@@ -7,7 +7,16 @@ class Api::V1::PortfoliosController < ApplicationController
 
   def show
     portfolio = Portfolio.find(params[:id])
-    render json: { portfolio: portfolio, holdings: portfolio.stocks }
+
+    stock_data = []
+    portfolio.stocks.each do |stock|
+      ticker = stock.ticker
+      response = Faraday.get "https://finnhub.io/api/v1/quote?symbol=#{ticker}&token=#{ENV['FINNHUB_API_KEY']}"
+      parsed_response = JSON.parse(response.body)
+      stock_data << parsed_response
+    end
+
+    render json: { portfolio: portfolio, holdings: portfolio.stocks, stock_data: stock_data }
   end
 
   def create

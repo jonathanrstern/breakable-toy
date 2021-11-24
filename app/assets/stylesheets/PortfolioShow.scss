@@ -1,6 +1,7 @@
 .show-container {
-  max-width: 600px;
-  margin: 25px auto;
+  max-width: 800px;
+  margin: auto;
+  padding: 25px 0px;
   .portfolio-name {
     font-size: 2em;
     font-weight: 700;
@@ -12,5 +13,14 @@
     font-size: 1.3em;
     font-weight: 700;
     padding: 25px 0px;
+  }
+  .current-holdings-table {
+    font-size: .8em;
+  }
+  th {
+    text-align: left;
+  }
+  tbody tr:nth-child(even) {
+    background-color: #f7f7f7;
   }
 }
