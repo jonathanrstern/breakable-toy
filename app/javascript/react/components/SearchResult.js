@@ -22,15 +22,22 @@ const SearchResult = props => {
       if (responseBody.error) {
         props.setErrors(responseBody.error)
       } else {
-        props.setPortfolioHoldings([...props.portfolioHoldings, responseBody])
+        props.setPortfolioHoldingsData([...props.portfolioHoldingsData, responseBody.stock_data])
+        props.setPortfolioHoldings([...props.portfolioHoldings, responseBody.stock])
+        props.setErrors("")
       }
     } catch (error) {
       console.error(`Error in Fetch: ${error.message}`)
     }
+    props.setStocks([])
+    props.setSearchString("")
   }
 
   return (
-    <li onClick={addToHoldings}>{ticker}, {name}</li>
+    <div className="search-result" onClick={addToHoldings}>
+      <div className="ticker">{ticker}</div>
+      <div className="name">{name}</div>
+    </div>
   )
 }
 
