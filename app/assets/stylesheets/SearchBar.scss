@@ -1,10 +1,16 @@
 .search-container {
-  width: 600px;
+  width: 800px;
   padding: 25px 0px;
   border-bottom: 1px solid #e8e8e8;
 }
 
 .search-results-container {
-  width: 50%;
+  width: 350px;
+  z-index: 2;
+  background-color: #ffffff;
   border: 1px solid #e8e8e8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 20%);
+  position: absolute;
+  left: 0px;
+  top: 158px;
 }

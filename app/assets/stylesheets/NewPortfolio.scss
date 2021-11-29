@@ -25,11 +25,12 @@
 
 .button {
   font-weight: 700;
+  font-size: 1em;
   margin: 0px;
   background-color: #29853a;
   border: 1px solid #3e904e;
   border-radius: 8px;
-  padding: 8px 16px;
+  padding: 12px 20px;
 }
 .button:hover, .button:focus {
   background-color: #349f48;
@@ -39,7 +40,7 @@
 .form-label {
   padding-bottom: 5px;
   font-weight: 700;
-  color: #171717;
+  color: #333333;
   font-size: .9em;
 }
 .form-subtext {
@@ -50,11 +51,17 @@
 }
 .input {
   color: #333333;
-  font-size: .8em;
+  font-size: .85em;
   border-radius: 3px;
 }
 
 .random-words {
   color: #29853a;
   cursor: pointer;
+}
+
+.errors {
+  font-size: .8em;
+  font-weight: 700;
+  color: #ff0000;
 }

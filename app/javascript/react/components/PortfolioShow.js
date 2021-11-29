@@ -62,11 +62,14 @@ const PortfolioShow = props => {
         <h3>Current Holdings</h3>
         <table className="current-holdings-table">
           <tbody>
-            <tr>
-              <th>Symbol</th>
-              <th>Price ($)</th>
-              <th>Day change ($)</th>
-              <th>Day change (%)</th>
+            <tr className="column-headers">
+              <th className="ticker-column">Symbol</th>
+              <th className="ticker-column-data-header">Price</th>
+              <th className="ticker-column-data-header">Chg ($)</th>
+              <th className="ticker-column-data-header">Chg (%)</th>
+              <th className="ticker-column-data-header">Open</th>
+              <th className="ticker-column-data-header">High</th>
+              <th className="ticker-column-data-header">Low</th>
             </tr>
             {currentHoldings}
           </tbody>

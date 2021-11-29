@@ -1,3 +1,29 @@
 .ticker-column {
   font-weight: 700;
+  color: #171717;
+  text-align: left;
+  width: 10%;
+}
+
+.ticker-column-data {
+  font-weight: 500;
+  text-align: right;
+  width: 10%;
+}
+
+.ticker-column-data-header {
+  font-weight: 700;
+  text-align: right;
+}
+
+.positive {
+  color: #008000;
+}
+
+.negative {
+  color: #ff0000;
+}
+
+.no-change {
+  color: #333333;
 }

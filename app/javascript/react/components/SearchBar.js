@@ -5,6 +5,13 @@ const SearchBar = (props) => {
   const [stocks, setStocks] = useState([])
   const [searchString, setSearchString] = useState('')
 
+  let searchContainerClass = ""
+  if (stocks.length != 0) {
+    searchContainerClass = "search-results-container"
+  }
+
+
+
   const handleChange = async (event) => {
     const newSearchString = event.target.value
     setSearchString(newSearchString)
@@ -28,6 +35,9 @@ const SearchBar = (props) => {
       }
       const responseBody = await response.json()
       setStocks(responseBody)
+      if (newSearchString === '') {
+        setStocks([])
+      }
     } catch (error) {
       console.error(`Error in Fetch: ${error.message}`)
     }
@@ -79,10 +89,10 @@ const SearchBar = (props) => {
   return (
     <div className="search-container">
       <form onSubmit={handleSubmit}>
-        <label>Add a stock</label>
-        <input className="input search-field" autoComplete="off" type='text' name='searchString' value={searchString} onChange={handleChange} />
+        <label className="form-label">Add a stock:</label>
+        <input className="input search-field" placeholder="Search for a company (e.g., AAPL, FB, GOOG)" autoComplete="off" type='text' name='searchString' value={searchString} onChange={handleChange} />
       </form>
-      <div className="search-results-container">
+      <div className={searchContainerClass}>
         {suggestionsList}
       </div>
     </div>

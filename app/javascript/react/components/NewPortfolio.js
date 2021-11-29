@@ -8,9 +8,11 @@ const NewPortfolio = () => {
 
   const [portfolioName, setPortfolioName] = useState("")
   const [shouldRedirect, setShouldRedirect] = useState({ status: false, id: null })
+  const [errors, setErrors] = useState("")
 
   const handleInputChange = event => {
     setPortfolioName(event.currentTarget.value)
+    setErrors("")
   }
 
   const onSubmitHandler = async (event) => {
@@ -25,10 +27,17 @@ const NewPortfolio = () => {
         },
         body: JSON.stringify(portfolioName)
       })
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        throw new Error(errorMessage)
+      }
       const responseBody = await response.json()
       setShouldRedirect({status: true, id: responseBody.id})
     } catch (error) {
       console.error(`Error in Fetch: ${error.message}`)
+      if (portfolioName === "") {
+        setErrors("You must enter a portfolio name")
+      }
     }
   }
    
@@ -49,6 +58,9 @@ const NewPortfolio = () => {
         Once you create a new portfolio, you will be able to add stocks and track their performance
       </div>
       <div className="new-portfolio-container" onSubmit={onSubmitHandler}>
+        <div className="errors">
+          {errors}
+        </div>
         <form className="new-portfolio-form">
           <label className="form-label" htmlFor="name">
             Portfolio name:
