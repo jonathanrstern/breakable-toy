@@ -57,31 +57,39 @@ const StockShow = props => {
   } else {
     return (
       <div className="stock-show">
-        <div className="stock-header">
-          <div className="name-exchange">
-            <h1 className="stock-name">{stock.name} ({ticker})</h1>
-            <h5 className="stock-exchange">{stock.exchange}</h5>
+        <div className="metrics-chart-container">
+          <div className="metrics">
+            <div className="stock-header">
+              <div className="name-exchange">
+                <h1 className="stock-name">{stock.name} ({ticker})</h1>
+                <h5 className="stock-exchange">{stock.exchange}</h5>
+              </div>
+            </div>
+            <div className="current-price">
+              <h2 className={`price`}>{stock.price ? stock.price.toFixed(2) : ""}</h2>
+              <h3 className={`price-change ${changeClass}`}>{stock.change_dollar ? `${sign}${stock.change_dollar.toFixed(2)}` : ""} ({stock.change_percent ? `${sign}${stock.change_percent.toFixed(2)}%` : ""})</h3>
+            </div>
+            <div className="daily-prices">
+              <h5 className="daily">Open:</h5>
+              <span className="daily-metric">{stock.open.toFixed(2)}</span>
+              <h5 className="daily">High:</h5>
+              <span className="daily-metric">{stock.high.toFixed(2)}</span>
+              <h5 className="daily">Low:</h5>
+              <span className="daily-metric">{stock.low.toFixed(2)}</span>
+            </div>
+            <div>
+              <StockShowMetrics
+                stock={stock}
+              />
+            </div>
+          </div>
+          <div className="chart">
+            <StockChart
+              ticker={ticker}
+            />
           </div>
         </div>
-        <div className="current-price">
-          <h2 className={`price`}>{stock.price ? stock.price.toFixed(2) : ""}</h2>
-          <h3 className={`price-change ${changeClass}`}>{stock.change_dollar ? `${sign}${stock.change_dollar.toFixed(2)}` : ""} ({stock.change_percent ? `${sign}${stock.change_percent.toFixed(2)}%` : ""})</h3>
-        </div>
-        <div className="daily-prices">
-          <h5 className="daily">Open:</h5>
-          <span className="daily-metric">{stock.open.toFixed(2)}</span>
-          <h5 className="daily">High:</h5>
-          <span className="daily-metric">{stock.high.toFixed(2)}</span>
-          <h5 className="daily">Low:</h5>
-          <span className="daily-metric">{stock.low.toFixed(2)}</span>
-        </div>
-        {/* <StockChart
-          prices={stock.chart_prices}
-          times={stock.chart_times}
-        /> */}
-        <StockShowMetrics
-          stock={stock}
-        />
+
         <StockShowNews
           articles={stock.articles}
         />

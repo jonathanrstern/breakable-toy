@@ -31,8 +31,8 @@ class Api::V1::StocksController < ApplicationController
     time_now = Time.now.to_i
     time_year_ago = time_now - 31556952
 
-    response4 = Faraday.get "https://finnhub.io/api/v1/stock/candle?symbol=#{ticker}&resolution=D&from=#{time_year_ago}&to=#{time_now}&token=c6f9drqad3idclgq86j0"
-    parsed_response4 = JSON.parse(response4.body)
+    # response4 = Faraday.get "https://finnhub.io/api/v1/stock/candle?symbol=#{ticker}&resolution=D&from=#{time_year_ago}&to=#{time_now}&token=c6f9drqad3idclgq86j0"
+    # parsed_response4 = JSON.parse(response4.body)
 
     response5 = Faraday.get "https://api.polygon.io/v2/reference/news?ticker=#{ticker}&limit=5&apiKey=#{ENV['POLYGON_API_KEY']}"
     parsed_response5 = JSON.parse(response5.body)
@@ -60,8 +60,8 @@ class Api::V1::StocksController < ApplicationController
       high: parsed_response3["h"],
       low: parsed_response3["l"],
       articles: articles,
-      chart_prices: parsed_response4["c"],
-      chart_times: parsed_response4["t"]
+      # chart_prices: parsed_response4["c"],
+      # chart_times: parsed_response4["t"]
     }
     
     render json: metrics

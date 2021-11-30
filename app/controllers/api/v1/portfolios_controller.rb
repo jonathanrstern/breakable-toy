@@ -35,7 +35,7 @@ class Api::V1::PortfoliosController < ApplicationController
     if portfolio.save
       render json: portfolio
     else
-      render "/portfolios/#{params[:id]}"
+      render json: { error: portfolio.errors.full_messages.to_sentence }
     end
   end
 end

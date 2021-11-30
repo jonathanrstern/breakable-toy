@@ -63,8 +63,13 @@ const PortfolioShow = props => {
         throw new Error(errorMessage)
       }
       const responseBody = await response.json()
-      setPortfolio(responseBody)
-      setIsUpdating(false)
+      if (responseBody.error) {
+        setErrors(responseBody.error)
+      } else {
+        setPortfolio(responseBody)
+        setIsUpdating(false)
+        setErrors("")
+      }
     } catch (error) {
       console.error(`Error in Fetch: ${error.message}`)
     }
@@ -99,7 +104,9 @@ const PortfolioShow = props => {
     if (isUpdating === true) {
       return (
         <div className="show-container">
-
+        <div className="errors">
+          {errors}
+        </div>
         <form onSubmit={updatePortfolioName} className="new-portfolio-name-form">
           <div className="label-and-input">
             <label className="new-form-label" htmlFor="name">
