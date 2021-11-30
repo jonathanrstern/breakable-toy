@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   root to: "homes#index"
   get '/portfolios/new', to: "homes#index"
   get '/portfolios/:id', to: "homes#index"
+  get '/stocks/:id', to: "homes#index"
 
   namespace :api do
     namespace :v1 do
-      resources :portfolios, only: [:show, :new, :create] do
+      resources :portfolios, only: [:show, :new, :create, :update] do
         resources :holdings, only: [:create]
       end
     end
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post 'stocks/search', to: 'stocks#search'
-      resources :stocks, only: [:index]
+      resources :stocks, only: [:index, :show]
     end
   end
 end

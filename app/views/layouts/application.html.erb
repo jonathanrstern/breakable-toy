@@ -9,20 +9,22 @@
 </head>
 
 <div class="top-bar">
-  <h1 class="top-bar-left"><%= link_to 'Stock Tracker', root_path %></h1>
-  <div class="top-bar-right">
-      <% if signed_in? %>
-        <ul class="dropdown menu" data-dropdown-menu>
-          <li class="menu-link"><%= link_to "Create Portfolio", portfolios_new_path %></li>
-          <li class="menu-link"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-        </ul>
-      <% else %>
-        <ul class="menu">
-          <li class="menu-link"><%= link_to "Create Portfolio", portfolios_new_path %></li>
-          <li class="menu-link"><%= link_to "Sign In", new_user_session_path %></li>
-          <li class="menu-link"><%= link_to "Sign Up", new_user_registration_path %></li>
-        </ul>
-      <% end %>
+  <div class="top-bar-content">
+    <h1 class="top-bar-left"><%= link_to 'Stock Tracker', root_path %></h1>
+    <div class="top-bar-right">
+        <% if signed_in? %>
+          <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-link"><%= link_to "Create Portfolio", portfolios_new_path %></li>
+            <li class="menu-link"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+          </ul>
+        <% else %>
+          <ul class="menu">
+            <li class="menu-link"><%= link_to "Create Portfolio", portfolios_new_path %></li>
+            <li class="menu-link"><%= link_to "Sign In", new_user_session_path %></li>
+            <li class="menu-link"><%= link_to "Sign Up", new_user_registration_path %></li>
+          </ul>
+        <% end %>
+    </div>
   </div>
 </div>
 

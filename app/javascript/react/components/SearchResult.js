@@ -22,8 +22,8 @@ const SearchResult = props => {
       if (responseBody.error) {
         props.setErrors(responseBody.error)
       } else {
-        props.setPortfolioHoldings([...props.portfolioHoldings, responseBody.stock])
         props.setPortfolioHoldingsData([...props.portfolioHoldingsData, responseBody.stock_data])
+        props.setPortfolioHoldings([...props.portfolioHoldings, responseBody.stock])
         props.setErrors("")
       }
     } catch (error) {
