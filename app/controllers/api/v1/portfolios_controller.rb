@@ -9,14 +9,13 @@ class Api::V1::PortfoliosController < ApplicationController
     portfolio = Portfolio.find(params[:id])
 
     stock_data = []
-    portfolio.stocks.each do |stock|
-      ticker = stock.ticker
-      response = Faraday.get "https://finnhub.io/api/v1/quote?symbol=#{ticker}&token=#{ENV['FINNHUB_API_KEY']}"
-      parsed_response = JSON.parse(response.body)
-      stock_data << parsed_response
+    holdings = portfolio.stocks
+    holdings.each do |stock|
+      response = Faraday.get "https://finnhub.io/api/v1/quote?symbol=#{stock.ticker}&token=#{ENV['FINNHUB_API_KEY']}"
+      stock_data << JSON.parse(response.body)
     end
 
-    render json: { portfolio: portfolio, holdings: portfolio.stocks, stock_data: stock_data }
+    render json: { portfolio: portfolio, holdings: holdings, stock_data: stock_data }
   end
 
   def create
@@ -26,6 +25,17 @@ class Api::V1::PortfoliosController < ApplicationController
       render json: new_portfolio
     else
       render '/portfolios/new'
+    end
+  end
+
+  def update
+    portfolio = Portfolio.find(params[:id])
+    portfolio.name = params["_json"]
+
+    if portfolio.save
+      render json: portfolio
+    else
+      render "/portfolios/#{params[:id]}"
     end
   end
 end

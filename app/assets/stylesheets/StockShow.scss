@@ -1,0 +1,87 @@
+.stock-show {
+  width: 700px;
+  padding: 25px;
+  margin: auto;
+  & * {
+    font-family: 'Inter', sans-serif;
+    border: none;
+  }
+  .stock-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .name-exchange {
+    display: flex;
+    flex-direction: column;
+  }
+  .stock-name {
+    display: flex;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #171717;
+  }
+  .stock-exchange {
+    display: flex;
+    font-size: .75em;
+    color: #b4b4b4;
+    font-weight: 400;
+  }
+  .stock-show-table {
+    width: 260px;
+    margin: 0px;
+    border: none;
+  }
+  .metric-row {
+    line-height: 10px;
+    font-size: .8em;
+    border-bottom: 1px solid #e8e8e8;
+    background-color: transparent;
+  }
+  .current-price {
+    display: flex;
+  }
+  .daily-prices {
+    display: flex;
+    padding-bottom: 15px;
+    & * {
+      font-size: .65em;
+      text-transform: uppercase;
+    }
+  }
+  .daily {
+    display: flex;
+    margin: 0px;
+    color: #333333;
+  }
+  .daily-metric {
+    display: flex;
+    font-weight: 700;
+    margin: 0px;
+    padding: 0px 10px 0px 2px;
+    color: #333333;
+    height: 15px;
+    align-items: center;
+  }
+  .price {
+    display: flex;
+    font-weight: 700;
+    font-size: 2em;
+    color: #171717;
+  }
+  .price-change {
+    display: flex;
+    font-size: 1.2em;
+    padding-left: 20px;
+    font-weight: 700;
+    height: 40px;
+    align-items: end;
+  }
+  .metric {
+    padding: 10px 10px 10px 0px;
+  }
+  .data {
+    padding: 10px 0px 10px 10px;
+    font-weight: 700;
+    text-align: right;
+  }
+}

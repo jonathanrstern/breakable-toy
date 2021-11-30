@@ -13,10 +13,13 @@
     "@babel/runtime": "^7.13.10",
     "@rails/webpacker": "3.5",
     "babel-loader": "^8.0.6",
+    "kaktana-react-lightweight-charts": "^2.0.0",
+    "lightweight-charts": "^3.7.0",
     "prop-types": "~15.6.0",
     "random-word-slugs": "^0.1.6",
     "react": "~16.8.0",
     "react-dom": "~16.8.0",
+    "react-google-charts": "^3.0.15",
     "react-router-dom": "5.0.0",
     "redbox-react": "1.6.0"
   },
