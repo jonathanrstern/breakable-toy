@@ -6,6 +6,8 @@
     width: 150px;
   }
   .loading-verbiage {
+    position: absolute;
+    top: 200px;
     text-align: center;
     color: #333333;
     font-weight: 700;
@@ -26,22 +28,56 @@
   margin: auto;
   padding: 25px 0px;
   position: relative;
-  .name-container {
+  .top-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    .portfolio-name {
+    height: 70px;
+    .name-container {
       display: flex;
-      font-size: 2em;
-      font-weight: 700;
+      .portfolio-name {
+        display: flex;
+        font-size: 2em;
+        font-weight: 700;
+      }
     }
-    .update-button {
+    .button-group {
       display: flex;
-      font-size: .9em;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      flex-grow: unset;
+      .update-button {
+        display: flex;
+        font-size: .8em;
+        width: 200px;
+        justify-content: center;
+        margin-bottom: 5px;
+        border-radius: 50px;
+      }
+      .delete-button {
+        display: flex;
+        font-size: .8em;
+        width: 200px;
+        justify-content: center;
+        border: 1px solid #b81919;
+        background-color: #9c1212;
+        border-radius: 50px;
+      }
+      .delete-button:hover {
+        background-color: #bd2121;
+      }
     }
   }
   .new-portfolio-name-form {
-    height: 160px;
+    height: 260px;
+    .new-name-form-subtext {
+      font-size: .9em;
+      font-weight: 400;
+      color: #999999;
+      margin: 0px;
+      &.second {
+        padding-bottom: 15px;
+      }
+    }
     .label-and-input {
       display: flex;
       flex-direction: column;
@@ -60,7 +96,19 @@
     }
     .update-button {
       display: flex;
+      font-size: .8em;
+      margin-bottom: 10px;
+      border-radius: 50px;
+    }
+    .nevermind {
       font-size: .9em;
+      font-weight: 400;
+      color: #999999;
+      cursor: pointer;
+      padding-bottom: 20px;
+      &:hover {
+      text-decoration: underline;
+      }
     }
   }
   .search-field {

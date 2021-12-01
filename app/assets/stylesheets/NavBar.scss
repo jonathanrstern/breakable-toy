@@ -20,19 +20,23 @@
 }
 
 .top-bar-left {
-  font-size: 1.4em;
-  font-weight: 700;
+  font-size: 1.5em;
+  letter-spacing: .5px;
   color: #000080;
   text-decoration: none;
   list-style: none;
   flex-direction: column;
   font-family: 'Inter', sans-serif;
-  text-transform: uppercase;
+}
+
+.logo {
+  font-size: 1.1em;
 }
 
 .top-bar-left a {
   text-decoration: none;
   color: #000080;
+  font-weight: 900;
 }
 
 .top-bar-left a:visited {
@@ -54,10 +58,22 @@
 .menu-link {
   display: flex;
   margin: auto;
-  margin-left: 20px;
-  font-size: .85em;
-  font-weight: 700;
+  margin-left: 30px;
+  font-size: .8em;
+  // text-transform: uppercase;
   letter-spacing: .25px;
+  font-weight: 700;
+  &.sign-up-link {
+    padding: 10px 20px 8px;
+    background-color: #008000;
+    border-radius: 50px;
+    & a {
+      color: #ffffff;
+    }
+    & a:visited {
+      color: #ffffff;
+    }
+  }
 }
 
 .menu-link:hover {
@@ -68,11 +84,11 @@
 .menu-link a {
   padding: 0px;
   text-decoration: none;
-  color: #000080;
+  color: #171717;
 }
 
 .menu-link a:visited {
-  color: #000080;
+  color: #171717;
 }
 
 .dropdown li a {

@@ -9,31 +9,30 @@ const NewsArticle = props => {
     const date = new Date(d)
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
     const month = months[date.getMonth()]
-    const dd = date.getDate()
+    let dd = date.getDate()
     const yyyy = date.getFullYear()
-    if(dd < 10) {dd='0'+dd} 
+    if (dd < 10) {dd = '0' + dd} 
     return month + ' ' + dd + ' ' + yyyy
   }
 
-  const timeConverter = (UNIX_timestamp) => {
-    const a = new Date(UNIX_timestamp * 1000)
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-    const year = a.getFullYear()
-    const month = months[a.getMonth()]
-    const date = a.getDate()
-    const time = month + ' ' + date + ' ' + year
-    return time
+  let dotDotDot = ""
+  if (article.description.length > 300) {
+    dotDotDot = "..."
   }
 
   return (
     <div className="article-container">
-      <img className="article-image" src={article.image_url} />
+      <div className="article-image-container">
+        <a href={article.article_url} target="_blank">
+          <img className="article-image" src={article.image_url} />
+        </a>
+      </div>
       <div className="article-details">
         <p className="article-source-time">{article.publisher.name} • {formatDate(article.published_utc)}</p>
         <a href={article.article_url} target="_blank">
           <h4 className="article-headline">{article.title}</h4>
         </a>
-        <h5 className="article-description">{article.description}</h5>
+        <h5 className="article-description">{`${article.description.substring(0, 200)}${dotDotDot}`}</h5>
       </div>
     </div>
   )

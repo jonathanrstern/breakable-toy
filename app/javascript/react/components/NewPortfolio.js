@@ -2,13 +2,19 @@ import React, { useEffect, useState } from "react"
 import { Link, Redirect } from "react-router-dom"
 import { generateSlug } from "random-word-slugs"
 
-const slug = generateSlug(3, { format: "title" })
+let slug = `${generateSlug(2, { format: "title" })}'s Portfolio`
 
 const NewPortfolio = () => {
 
   const [portfolioName, setPortfolioName] = useState("")
   const [shouldRedirect, setShouldRedirect] = useState({ status: false, id: null })
+  const [randomWords, setRandomWords] = useState(slug)
   const [errors, setErrors] = useState("")
+
+  const getNewRandomWord = () => {
+    slug = `${generateSlug(2, { format: "title" })}'s Portfolio`
+    setRandomWords(slug)
+  }
 
   const handleInputChange = event => {
     setPortfolioName(event.currentTarget.value)
@@ -65,8 +71,9 @@ const NewPortfolio = () => {
           <label className="form-label" htmlFor="name">
             Portfolio name:
           </label>
-          <input id="new-portfolio-input" className="input" type="text" name="name" onChange={handleInputChange} value={portfolioName} />
-          <p className="form-subtext">Great portfolio names are short and memorable. Need inspiration? How about <b className="random-words" onClick={clickRandomWords}>{slug}</b>?</p>
+          <input autoComplete="off" id="new-portfolio-input" className="input" type="text" name="name" onChange={handleInputChange} value={portfolioName} />
+          <p className="form-subtext first">Great portfolio names are short and memorable. Need inspiration? How about <b className="random-words" onClick={clickRandomWords}>{slug}</b>?</p>
+          <p className="form-subtext second">Want another suggestion? <img className="random-words" height="18px" width="18px" onClick={getNewRandomWord} src="https://orioni.co/nmedia/png/reload-5678.png" /></p>
           <input className="button" type="submit" value="Create portfolio" />
         </form>
       </div>

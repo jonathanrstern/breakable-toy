@@ -6,7 +6,7 @@ const StockChart = (props) => (
 
     <TradingViewWidget
       symbol={props.ticker}
-      theme={Themes.DARK}
+      theme={Themes.LIGHT}
       locale="en"
       width="600px"
       height="350px"
