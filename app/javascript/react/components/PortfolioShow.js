@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import SearchBar from "./SearchBar"
 import CurrentHolding from "./CurrentHolding"
+import { generateSlug } from "random-word-slugs"
+
+let slug = `${generateSlug(2, { format: "title" })}'s Portfolio`
 
 const PortfolioShow = props => {
   const [portfolio, setPortfolio] = useState({})
@@ -11,6 +14,7 @@ const PortfolioShow = props => {
 
   const [isFetching, setIsFetching] = useState(true)
   const [isUpdating, setIsUpdating] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   const [portfolioName, setPortfolioName] = useState("")
   
@@ -42,8 +46,20 @@ const PortfolioShow = props => {
     fetchPortfolio()
   }, [])
 
-  const updateSetter = async () => {
-    setIsUpdating(true)
+  const updateSetter = () => {
+    if (isUpdating === false) {
+      setIsUpdating(true)
+    } else {
+      setIsUpdating(false)
+    }
+  }
+
+  const updateStocks = () => {
+    if (isDeleting === false) {
+      setIsDeleting(true)
+    } else {
+      setIsDeleting(false)
+    }
   }
 
   const updatePortfolioName = async () => {
@@ -78,14 +94,41 @@ const PortfolioShow = props => {
   let currentHoldings = []
   if (portfolioHoldings.length !== 0 && portfolioHoldingsData.length !== 0) {
     currentHoldings = portfolioHoldings.map((holding, index) => {
-      return (
+      if (isDeleting === false) {
+        return (
           <CurrentHolding
             key={holding.id}
             holding={holding}
             data={portfolioHoldingsData[index]}
+            portfolioId={portfolioId}
+            isDeleting={false}
           />
-      )
+        )
+      } else {
+        return (
+          <CurrentHolding
+            key={holding.id}
+            holding={holding}
+            data={portfolioHoldingsData[index]}
+            portfolioId={portfolioId}
+            setPortfolioHoldings={setPortfolioHoldings}
+            setPortfolioHoldingsData={setPortfolioHoldingsData}
+            isDeleting={true}
+          />
+        )
+      }
     })
+  }
+
+  const [randomWords, setRandomWords] = useState(slug)
+
+  const clickRandomWords = () => {
+    return setPortfolioName(slug)
+  }
+
+  const getNewRandomWord = () => {
+    slug = `${generateSlug(2, { format: "title" })}'s Portfolio`
+    setRandomWords(slug)
   }
 
   let ctaMessage = <div></div>
@@ -112,10 +155,16 @@ const PortfolioShow = props => {
             <label className="new-form-label" htmlFor="name">
               New portfolio name:
             </label>
-            <input id="new-portfolio-input" className="input" type="text" name="name" placeholder={portfolio.name} onChange={handleInputChange} value={portfolioName} />
+            <input autoComplete="off" id="new-portfolio-input" className="input" type="text" name="name" placeholder={portfolio.name} onChange={handleInputChange} value={portfolioName} />
+            <p className="new-name-form-subtext first">Need inspiration? How about <b className="random-words" onClick={clickRandomWords}>{slug}</b>?</p>
+            <p className="new-name-form-subtext second">Want another suggestion? <img className="random-words" height="18px" width="18px" onClick={getNewRandomWord} src="https://orioni.co/nmedia/png/reload-5678.png" /></p>
+            <p className="new-name-form-subtext nevermind" onClick={updateSetter}>
+              (Nevermind, take me back!)
+            </p>
           </div>
           <input className="update-button button" type="submit" value="Update portfolio name" />
         </form>
+
 
         <div className="current-holdings-container">
           <h3>Current Holdings</h3>
@@ -138,45 +187,102 @@ const PortfolioShow = props => {
       </div>
       )
     } else {
-      return (
-        <div className="show-container">
-          <div className="name-container">
-            <h1 className="portfolio-name">{portfolio.name}</h1>
-            <div onClick={updateSetter} className="update-button button">
-              Update Portfolio Name
+      if (isDeleting === true) {
+        return (
+          <div className="show-container">
+            <div className="top-container">
+              <div className="name-container">
+                <h1 className="portfolio-name">{portfolio.name}</h1>
+              </div>
+              <div className="button-group">
+                <div onClick={updateSetter} className="update-button button">
+                  Update Portfolio Name
+                </div>
+                <div onClick={updateStocks} className="delete-button button">
+                  Done Deleting?
+                </div>
+              </div>
+            </div>
+            <div className="errors">
+              {errors}
+            </div>
+            <SearchBar
+              portfolioId={portfolioId}
+              portfolioHoldings={portfolioHoldings}
+              setPortfolioHoldings={setPortfolioHoldings}
+              portfolioHoldingsData={portfolioHoldingsData}
+              setPortfolioHoldingsData={setPortfolioHoldingsData}
+              setErrors={setErrors}
+            />
+            <div className="current-holdings-container">
+              <h3>Current Holdings</h3>
+              <table className="current-holdings-table">
+                <tbody>
+                  <tr className="column-headers">
+                    <th className="ticker-column">Symbol</th>
+                    <th className="ticker-column-data-header">Price</th>
+                    <th className="ticker-column-data-header">Chg ($)</th>
+                    <th className="ticker-column-data-header">Chg (%)</th>
+                    <th className="ticker-column-data-header">Open</th>
+                    <th className="ticker-column-data-header">High</th>
+                    <th className="ticker-column-data-header">Low</th>
+                    <th className="ticker-column-data-header">Delete?</th>
+                  </tr>
+                  {currentHoldings}
+                </tbody>
+              </table>
+              {ctaMessage}
             </div>
           </div>
-          <div className="errors">
-            {errors}
+        )
+      } else {
+        return (
+          <div className="show-container">
+            <div className="top-container">
+              <div className="name-container">
+                <h1 className="portfolio-name">{portfolio.name}</h1>
+              </div>
+              <div className="button-group">
+                <div onClick={updateSetter} className="update-button button">
+                  Update Portfolio Name
+                </div>
+                <div onClick={updateStocks} className="delete-button button">
+                  Delete Stocks
+                </div>
+              </div>
+            </div>
+            <div className="errors">
+              {errors}
+            </div>
+            <SearchBar
+              portfolioId={portfolioId}
+              portfolioHoldings={portfolioHoldings}
+              setPortfolioHoldings={setPortfolioHoldings}
+              portfolioHoldingsData={portfolioHoldingsData}
+              setPortfolioHoldingsData={setPortfolioHoldingsData}
+              setErrors={setErrors}
+            />
+            <div className="current-holdings-container">
+              <h3>Current Holdings</h3>
+              <table className="current-holdings-table">
+                <tbody>
+                  <tr className="column-headers">
+                    <th className="ticker-column">Symbol</th>
+                    <th className="ticker-column-data-header">Price</th>
+                    <th className="ticker-column-data-header">Chg ($)</th>
+                    <th className="ticker-column-data-header">Chg (%)</th>
+                    <th className="ticker-column-data-header">Open</th>
+                    <th className="ticker-column-data-header">High</th>
+                    <th className="ticker-column-data-header">Low</th>
+                  </tr>
+                  {currentHoldings}
+                </tbody>
+              </table>
+              {ctaMessage}
+            </div>
           </div>
-          <SearchBar
-            portfolioId={portfolioId}
-            portfolioHoldings={portfolioHoldings}
-            setPortfolioHoldings={setPortfolioHoldings}
-            portfolioHoldingsData={portfolioHoldingsData}
-            setPortfolioHoldingsData={setPortfolioHoldingsData}
-            setErrors={setErrors}
-          />
-          <div className="current-holdings-container">
-            <h3>Current Holdings</h3>
-            <table className="current-holdings-table">
-              <tbody>
-                <tr className="column-headers">
-                  <th className="ticker-column">Symbol</th>
-                  <th className="ticker-column-data-header">Price</th>
-                  <th className="ticker-column-data-header">Chg ($)</th>
-                  <th className="ticker-column-data-header">Chg (%)</th>
-                  <th className="ticker-column-data-header">Open</th>
-                  <th className="ticker-column-data-header">High</th>
-                  <th className="ticker-column-data-header">Low</th>
-                </tr>
-                {currentHoldings}
-              </tbody>
-            </table>
-            {ctaMessage}
-          </div>
-        </div>
-      )
+        )
+      }
     }
   }
 

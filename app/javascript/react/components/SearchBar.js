@@ -62,7 +62,7 @@ const SearchBar = (props) => {
     <div className="search-container">
       <form>
         <label className="form-label">Add a stock:</label>
-        <input className="input search-field" placeholder="Search for a company (e.g., AAPL, TSLA, GOOG)" autoComplete="off" type='text' name='searchString' value={searchString} onChange={handleChange} />
+        <input autoComplete="off" className="input search-field" placeholder="Search for a company (e.g., AAPL, TSLA, GOOG)" type='text' name='searchString' value={searchString} onChange={handleChange} />
       </form>
       <div className={searchContainerClass}>
         {suggestionsList}

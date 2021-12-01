@@ -1,6 +1,6 @@
 .stock-show {
-  width: 1000px;
-  padding: 25px;
+  max-width: 925px;
+  padding: 25px 0px;
   margin: auto;
   & * {
     font-family: 'Inter', sans-serif;
@@ -86,6 +86,7 @@
   }
   .metrics-chart-container {
     display: flex;
+    justify-content: center;
     .metrics {
       display: flex;
       flex-direction: column;
@@ -93,6 +94,7 @@
     .chart {
       display: flex;
       padding-left: 50px;
+      align-items: end;
     }
   }
 }
