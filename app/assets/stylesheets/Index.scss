@@ -35,4 +35,11 @@
     border: 1px solid #48a85b;
     transition: none;
   }
+  .top-investors {
+    display: flex;
+    max-width: 1000px;
+    margin: auto;
+    flex-wrap: wrap;
+    padding-top: 50px;
+  }
 }

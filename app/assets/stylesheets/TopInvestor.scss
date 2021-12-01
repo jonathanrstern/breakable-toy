@@ -1,0 +1,16 @@
+.top-investor-container {
+  display: flex;
+  margin: 30px;
+  width: 250px;
+  border: 1px solid #e8e8e8;
+  .top-investor-header {
+    display: flex;
+  }
+  .top-investor-image {
+    border-radius: 50px;
+  }
+  .top-investor-name {
+    margin: auto;
+    padding-left: 10px;
+  }
+}
