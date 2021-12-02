@@ -1,6 +1,6 @@
 Stock.new
 
-response = Faraday.get "https://api.polygon.io/v3/reference/tickers?type=CS&market=stocks&active=true&sort=ticker&order=asc&limit=1000&apiKey=#{ENV['API_KEY']}"
+response = Faraday.get "https://api.polygon.io/v3/reference/tickers?type=CS&market=stocks&active=true&sort=ticker&order=asc&limit=1000&apiKey=#{ENV['POLYGON_API_KEY']}"
 parsed_response = JSON.parse(response.body)
 
 stocks = parsed_response["results"]
@@ -41,10 +41,8 @@ stocks.each do |stock|
 end
 
 while parsed_response["next_url"] do
-  # Added the binding.pry so that seeding takes more than 1 minute
-  # Polygon.io only allows 5 requests per minute
-  binding.pry
-  response = Faraday.get "#{parsed_response["next_url"]}&apiKey=#{ENV['API_KEY']}"
+  sleep(15)
+  response = Faraday.get "#{parsed_response["next_url"]}&apiKey=#{ENV['POLYGON_API_KEY']}"
   parsed_response = JSON.parse(response.body)
 
   stocks = parsed_response["results"]
