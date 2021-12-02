@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "homes#index"
-  get '/portfolios/new', to: "homes#index"
+  devise_for :users
+
+  get '/portfolios/new', to: "homes#authenticated"
   get '/portfolios/:id', to: "homes#index"
   get '/stocks/:id', to: "homes#index"
 
@@ -20,4 +21,11 @@ Rails.application.routes.draw do
       resources :stocks, only: [:index, :show]
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index]
+    end
+  end
+
 end

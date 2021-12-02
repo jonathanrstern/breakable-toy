@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 import SearchBar from "./SearchBar"
 import CurrentHolding from "./CurrentHolding"
 import { generateSlug } from "random-word-slugs"
+import spinner from "../../../assets/images/spinner.gif"
+import reloadIcon from "../../../assets/images/reload.jpg"
 
 let slug = `${generateSlug(2, { format: "title" })}'s Portfolio`
 
@@ -139,7 +141,7 @@ const PortfolioShow = props => {
   if (isFetching === true) {
     return (
       <div className="loading-container">
-        <img className="spinning-radial" src="https://miro.medium.com/max/1400/0*ptDX0HfJCYpo9Pcs.gif" />
+        <img className="spinning-radial" src={spinner} />
         <p className="loading-verbiage">Pinging Wall Street... just a second!</p>
       </div>
     )
@@ -157,10 +159,10 @@ const PortfolioShow = props => {
             </label>
             <input autoComplete="off" id="new-portfolio-input" className="input" type="text" name="name" placeholder={portfolio.name} onChange={handleInputChange} value={portfolioName} />
             <p className="new-name-form-subtext first">Need inspiration? How about <b className="random-words" onClick={clickRandomWords}>{slug}</b>?</p>
-            <p className="new-name-form-subtext second">Want another suggestion? <img className="random-words" height="18px" width="18px" onClick={getNewRandomWord} src="https://orioni.co/nmedia/png/reload-5678.png" /></p>
-            <p className="new-name-form-subtext nevermind" onClick={updateSetter}>
+            <p className="new-name-form-subtext second">Want another suggestion? <img className="random-words" height="18px" width="18px" onClick={getNewRandomWord} src={reloadIcon} /></p>
+            {/* <p className="new-name-form-subtext nevermind" onClick={updateSetter}>
               (Nevermind, take me back!)
-            </p>
+            </p> */}
           </div>
           <input className="update-button button" type="submit" value="Update portfolio name" />
         </form>

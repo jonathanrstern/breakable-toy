@@ -9,6 +9,14 @@
     line-height: 1.2em;
     color: #171717;
     margin-bottom: 20px;
+    &.two {
+      display: block;
+      width: 100%;
+      color: #171717;
+      font-weight: 700;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
   }
   .landing-page-subtext {
     font-size: 1.35em;
@@ -34,5 +42,21 @@
     background-color: #349f48;
     border: 1px solid #48a85b;
     transition: none;
+  }
+  .down-button {
+    width: 50px;
+    height: 50px;
+    margin: 125px auto;
+    cursor: pointer;
+  }
+  .down-button:hover {
+    opacity: 90%;
+  }
+  .top-investors {
+    display: flex;
+    max-width: 1000px;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Link, Redirect } from "react-router-dom"
+import minusSign from "../../../assets/images/minus-sign.jpg"
 
 const CurrentHolding = props => {
 
@@ -76,7 +77,7 @@ const CurrentHolding = props => {
         <td className="ticker-column-data">{props.data ? props.data.o.toFixed(2) : "-"}</td>
         <td className="ticker-column-data">{props.data ? props.data.h.toFixed(2) : "-"}</td>
         <td className="ticker-column-data">{props.data ? props.data.l.toFixed(2) : "-"}</td>
-        <td className="ticker-column-data delete-symbol"> <img onClick={deleteStock} height="20" width="20" src="https://cdn3.iconfinder.com/data/icons/cosmo-color-player-1/40/button_minus_1-512.png" /> </td>
+        <td className="ticker-column-data delete-symbol"> <img onClick={deleteStock} height="20" width="20" src={minusSign} /> </td>
       </tr>
     )
   }

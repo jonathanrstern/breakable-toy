@@ -1,6 +1,8 @@
 class Api::V1::PortfoliosController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
 
+  before_action :authorize_user, except: [:show]
+
   def index
     render json: Portfolio.all
   end
@@ -19,7 +21,7 @@ class Api::V1::PortfoliosController < ApplicationController
   end
 
   def create
-    new_portfolio = Portfolio.new(name: params["_json"])
+    new_portfolio = Portfolio.new(name: params["_json"], user: current_user)
     
     if new_portfolio.save
       render json: new_portfolio
@@ -36,6 +38,14 @@ class Api::V1::PortfoliosController < ApplicationController
       render json: portfolio
     else
       render json: { error: portfolio.errors.full_messages.to_sentence }
+    end
+  end
+
+  protected
+
+  def authorize_user
+    if !user_signed_in?
+      redirect_to root_path
     end
   end
 end
