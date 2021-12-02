@@ -3,22 +3,18 @@ import { Link } from "react-router-dom"
 
 const TopInvestor = props => {
 
-  const { name, photo_url, fund_logo_url } = props
+  const { name, photo_url, fund, id } = props
 
   return (
-    <div className="top-investor-container">
-      <div className="top-investor-header">
-        <div className="top-investor-image-container">
-          <img className="top-investor-image" src={photo_url} width="50px" height="50px" />
-        </div>
-        <div className="top-investor-name">
-          {name}
-        </div>
+    <Link to={`/portfolios/${id}`} className="top-investor-container">
+      <div className="top-investor-image-container">
+        <img className="top-investor-image" src={photo_url}/>
       </div>
-      <div className="top-investor-fund">
-        <img className="top-investor-fund-image" src={fund_logo_url} />
+      <div className="top-investor-name-container">
+        <div className="top-investor-name">{name}</div>
+        <div className="top-investor-fund">{fund}</div>
       </div>
-    </div>
+    </Link>
   )
 }
 

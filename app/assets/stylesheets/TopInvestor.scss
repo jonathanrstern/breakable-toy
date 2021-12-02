@@ -1,16 +1,43 @@
 .top-investor-container {
   display: flex;
+  flex-direction: column;
   margin: 30px;
   width: 250px;
+  height: 160px;
   border: 1px solid #e8e8e8;
-  .top-investor-header {
+  border-radius: 12px;
+  box-shadow: 0 2px 4px 0 rgba(63, 63, 55, 10%);
+  overflow: hidden;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #ffffff;
+  &:hover {
+    background-color: #f9f9f9;
+  }
+  .top-investor-image-container {
     display: flex;
+    margin-bottom: 10px;
+    justify-content: center;
   }
   .top-investor-image {
+    width: 75px;
+    height: 75px;
     border-radius: 50px;
   }
   .top-investor-name {
-    margin: auto;
-    padding-left: 10px;
+    display: flex;
+    font-weight: 700;
+    font-size: 1em;
+    letter-spacing: .5px;
+    color: #171717;
+    justify-content: center;
+  }
+  .top-investor-fund {
+    display: flex;
+    font-weight: 400;
+    font-size: .8em;
+    letter-spacing: .5px;
+    color: #666666;
+    justify-content: center;
   }
 }

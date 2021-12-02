@@ -1,11 +1,54 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import FetchFromAPI from "./FetchFromAPI"
 import NavBar from "./NavBar"
 import SearchBar from "./SearchBar"
 import TopInvestor from "./TopInvestor"
+import downButton from "../../../assets/images/down-button.jpg"
+import Buffett from "../../../assets/images/Buffett.jpg"
+import Soros from "../../../assets/images/Soros.jpg"
+import Jones from "../../../assets/images/Jones.jpg"
+import Druckenmiller from "../../../assets/images/Druckenmiller.jpg"
+import Marks from "../../../assets/images/Marks.jpg"
+import Cohen from "../../../assets/images/Cohen.jpg"
 
 const Index = () => {
+
+  const [signedIn, setSignedIn] = useState(false)
+
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: 1000,
+      left: 0,
+      behavior: 'smooth'
+    })
+  }
+
+  const fetchUser = async () => {
+    try {
+      const response = await fetch(`/api/v1/users`)
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        throw new Error(errorMessage)
+      }
+      const responseBody = await response.json()
+      if (responseBody.signed_in) {
+        setSignedIn(true)
+      }
+    } catch (error) {
+      console.error(`Error in Fetch: ${error.message}`)
+    }
+  }
+
+  useEffect(() => {
+    fetchUser()
+  }, [])
+
+  let ctaRedirectLink = "/users/sign_up"
+
+  if (signedIn === true) {
+    ctaRedirectLink = "/portfolios/new"
+  }
 
   return (
     <div className="landing-page-container">
@@ -13,47 +56,59 @@ const Index = () => {
       <h3 className="landing-page-subtext">
         Real time quotes, the latest news, and comparisons with the top investors in the world
       </h3>
-      <Link to="/portfolios/new">
+      <a href={ctaRedirectLink}>
         <button className="landing-page-cta">
           Create a portfolio
         </button>
-      </Link>
+      </a>
+
+      <div className="down-button">
+        <img onClick={scrollToBottom} src={downButton} />
+      </div>
+
       <div className="top-investors">
+        <h2 className="landing-page-text two">Compare your portfolio with the best in the world:</h2>
         <TopInvestor
           key="1"
+          id="1"
           name="Warren Buffett"
-          photo_url="https://247wallst.com/wp-content/uploads/2016/05/warren-buffett-square-e1462828190521.jpg"
-          fund_logo_url=""
+          fund="Berkshire Hathaway"
+          photo_url={Buffett}
         />
         <TopInvestor
           key="2"
+          id="2"
           name="George Soros"
-          photo_url="https://thumbor.forbes.com/thumbor/fit-in/416x416/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5f4e72bdd82a882a3012a595%2F0x0.jpg%3Fbackground%3D000000%26cropX1%3D886%26cropX2%3D3035%26cropY1%3D515%26cropY2%3D2664"
-          fund_logo_url=""
+          fund="Soros Fund Management"
+          photo_url={Soros}
         />
         <TopInvestor
           key="3"
+          id="3"
           name="Paul Tudor Jones"
-          photo_url="https://pyxis.nymag.com/v1/imgs/08d/0d5/d9850c041c068071606264591806025590-23-paul-tudor-jones.rsquare.w330.jpg"
-          fund_logo_url=""
+          fund="Tudor Investment Corporation"
+          photo_url={Jones}
         />
         <TopInvestor
           key="4"
+          id="4"
           name="Steve Cohen"
-          photo_url="https://thumbor.forbes.com/thumbor/fit-in/416x416/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5a8d946e4bbe6f2652f61ca6%2F0x0.jpg%3Fbackground%3D000000%26cropX1%3D703%26cropX2%3D3292%26cropY1%3D80%26cropY2%3D2667"
-          fund_logo_url=""
+          fund="Point72"
+          photo_url={Cohen}
         />
         <TopInvestor
           key="5"
+          id="5"
           name="Stanley Druckenmiller"
-          photo_url="https://thumbor.forbes.com/thumbor/fit-in/416x416/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5d8a9ea218444200084e6e8b%2F0x0.jpg%3Fbackground%3D000000%26cropX1%3D1229%26cropX2%3D3892%26cropY1%3D6%26cropY2%3D2667"
-          fund_logo_url=""
+          fund="Duquesne Family Office"
+          photo_url={Druckenmiller}
         />
         <TopInvestor
           key="6"
+          id="6"
           name="Howard Marks"
-          photo_url="https://global-uploads.webflow.com/5dfd5aca7badfa129f80056c/5efe3aafb172da35f0e74c99_howard-marks.jpeg"
-          fund_logo_url=""
+          fund="Oaktree Capital"
+          photo_url={Marks}
         />
       </div>
     </div>

@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react"
 import StockShowMetrics from "./StockShowMetrics"
 import StockShowNews from "./StockShowNews"
-import StockChart from "./StockChart" 
+import StockChart from "./StockChart"
+import spinner from "../../../assets/images/spinner.gif"
 
 const StockShow = props => {
 
@@ -50,7 +51,7 @@ const StockShow = props => {
   if (isFetching === true) {
     return (
       <div className="loading-container">
-        <img className="spinning-radial" src="https://miro.medium.com/max/1400/0*ptDX0HfJCYpo9Pcs.gif" />
+        <img className="spinning-radial" src={spinner} />
         <p className="loading-verbiage">Pinging Wall Street... just a second!</p>
       </div>
     )
