@@ -16,23 +16,25 @@ const NewsArticle = props => {
   }
 
   let dotDotDot = ""
-  if (article.description.length > 300) {
-    dotDotDot = "..."
+  if (article.description) {
+    if (article.description.length > 300) {
+      dotDotDot = "..."
+    }
   }
 
   return (
     <div className="article-container">
       <div className="article-image-container">
-        <a href={article.article_url} target="_blank">
-          <img className="article-image" src={article.image_url} />
+        <a href={article ? article.article_url: ""} target="_blank">
+          <img className="article-image" src={article ? article.image_url : ""} />
         </a>
       </div>
       <div className="article-details">
-        <p className="article-source-time">{article.publisher.name} • {formatDate(article.published_utc)}</p>
-        <a href={article.article_url} target="_blank">
+        <p className="article-source-time">{article ? article.publisher.name : ""} • {formatDate(article ? article.published_utc : "")}</p>
+        <a href={article ? article.article_url : ""} target="_blank">
           <h4 className="article-headline">{article.title}</h4>
         </a>
-        <h5 className="article-description">{`${article.description.substring(0, 200)}${dotDotDot}`}</h5>
+        <h5 className="article-description">{article.description ? article.description.substring(0, 200) : ""}</h5>
       </div>
     </div>
   )
