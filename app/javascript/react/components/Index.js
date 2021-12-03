@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 import FetchFromAPI from "./FetchFromAPI"
 import NavBar from "./NavBar"
@@ -14,8 +14,6 @@ import Cohen from "../../../assets/images/Cohen.jpg"
 
 const Index = () => {
 
-  const [signedIn, setSignedIn] = useState(false)
-
   const scrollToBottom = () => {
     window.scrollTo({
       top: 1000,
@@ -24,39 +22,13 @@ const Index = () => {
     })
   }
 
-  const fetchUser = async () => {
-    try {
-      const response = await fetch(`/api/v1/users`)
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        throw new Error(errorMessage)
-      }
-      const responseBody = await response.json()
-      if (responseBody.signed_in) {
-        setSignedIn(true)
-      }
-    } catch (error) {
-      console.error(`Error in Fetch: ${error.message}`)
-    }
-  }
-
-  useEffect(() => {
-    fetchUser()
-  }, [])
-
-  let ctaRedirectLink = "/users/sign_up"
-
-  if (signedIn === true) {
-    ctaRedirectLink = "/portfolios/new"
-  }
-
   return (
     <div className="landing-page-container">
       <h1 className="landing-page-text">Keep track of your portfolio</h1>
       <h3 className="landing-page-subtext">
         Real time quotes, the latest news, and comparisons with the top investors in the world
       </h3>
-      <a href={ctaRedirectLink}>
+      <a href="/portfolios/new">
         <button className="landing-page-cta">
           Create a portfolio
         </button>
