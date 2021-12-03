@@ -1,7 +1,7 @@
 Stock.new
 
+stocks = []
 response = Faraday.get "https://api.polygon.io/v3/reference/tickers?type=CS&market=stocks&active=true&sort=ticker&order=asc&limit=1000&apiKey=#{ENV['POLYGON_API_KEY']}"
-sleep(5)
 parsed_response = JSON.parse(response.body)
 
 stocks = parsed_response["results"]
