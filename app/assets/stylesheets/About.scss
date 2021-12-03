@@ -3,7 +3,7 @@
   font-weight: 700;
   color: #171717;
   text-align: center;
-  margin: 20px auto;
+  margin: 40px auto 20px;
 }
 
 .about-image-container {
@@ -22,7 +22,7 @@
   font-weight: 700;
   color: #171717;
   text-align: center;
-  margin: 5px auto 0px;
+  margin: 15px auto 0px;
 }
 
 .about-location {
@@ -34,10 +34,11 @@
 }
 
 .about-description {
-  font-size: .9em;
+  font-size: 1em;
   font-weight: 400;
-  color: #333333;
-  max-width: 600px;
-  text-align: center;
+  color: #555555;
+  max-width: 700px;
+  text-align: justify;
+  padding: 0px 40px;
   margin: 20px auto;
 }

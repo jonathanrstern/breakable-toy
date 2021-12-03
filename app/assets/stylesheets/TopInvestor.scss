@@ -1,3 +1,19 @@
+.top-investors {
+  display: flex;
+  max-width: 1000px;
+  margin: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.top-investors-text {
+  display: block;
+  width: 100%;
+  color: #171717;
+  font-weight: 700;
+  margin: 40px auto 0px;
+  font-size: 1.5em;
+  text-align: center;
+}
 .top-investor-container {
   display: flex;
   flex-direction: column;

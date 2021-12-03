@@ -6,6 +6,7 @@ import PortfolioShow from './PortfolioShow'
 import StockShow from './StockShow'
 import UserShow from './UserShow'
 import About from './About'
+import TopInvestors from './TopInvestors'
 
 export const App = (props) => {
   return (
@@ -17,6 +18,7 @@ export const App = (props) => {
         <Route exact path="/stocks/:id" component={StockShow} />
         <Route exact path="/users/:id" component={UserShow} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/top-investors" component={TopInvestors} />
       </Switch>
     </BrowserRouter>
   )

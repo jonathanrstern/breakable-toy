@@ -11,15 +11,15 @@ export const About = (props) => {
       <h3 className="about-name">Jonathan Stern</h3>
       <h4 className="about-location">Boston, MA</h4>
       <p className="about-description">
-        Prior to Launch Academy, I was an analyst at S&P Global, where I covered
-        autonomous vehicles, connected cars, and the future of mobility. I knew
-        that I loved technology, and I appreciated the opportunity to cultivate
-        a bird's-eye view of the market; however, this role at S&P led me to
-        discover that my personality and ambitions are better suited for{" "}
-        <i>building</i> new technologies, rather than writing about technology
-        as an analyst. I want to be “in the arena,” which is why I enrolled at
-        Launch Academy and am so excited to begin my career a software
-        developer.
+        Prior to Launch Academy, I spent three years as an analyst at S&P
+        Global, covering autonomous vehicles, connected cars, and the future of
+        mobility. I knew I loved technology, and I appreciated the opportunity
+        to cultivate a bird's-eye view of the market; however, this role at S&P
+        led me to discover that my personality and ambitions are better suited
+        to <i>building</i> new technologies, rather than writing about
+        technology as an analyst. I want to be “in the arena,” which is why I
+        enrolled at Launch and am so excited to begin my career a software
+        developer!
       </p>
     </div>
   )
