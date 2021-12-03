@@ -5,6 +5,7 @@ import NewPortfolio from './NewPortfolio'
 import PortfolioShow from './PortfolioShow'
 import StockShow from './StockShow'
 import UserShow from './UserShow'
+import About from './About'
 
 export const App = (props) => {
   return (
@@ -15,6 +16,7 @@ export const App = (props) => {
         <Route exact path="/portfolios/:id" component={PortfolioShow} />
         <Route exact path="/stocks/:id" component={StockShow} />
         <Route exact path="/users/:id" component={UserShow} />
+        <Route exact path="/about" component={About} />
       </Switch>
     </BrowserRouter>
   )

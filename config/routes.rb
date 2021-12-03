@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/portfolios/:id', to: "homes#index"
   get '/stocks/:id', to: "homes#index"
   get '/users/:id', to: "homes#index"
+  get '/about', to: "homes#index"
 
   namespace :api do
     namespace :v1 do

@@ -1,0 +1,43 @@
+.about-header {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #171717;
+  text-align: center;
+  margin: 20px auto;
+}
+
+.about-image-container {
+  text-align: center;
+  margin: auto;
+}
+
+.about-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.about-name {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #171717;
+  text-align: center;
+  margin: 5px auto 0px;
+}
+
+.about-location {
+  font-size: .9em;
+  font-weight: 400;
+  color: #999999;
+  text-align: center;
+  margin: auto;
+}
+
+.about-description {
+  font-size: .9em;
+  font-weight: 400;
+  color: #333333;
+  max-width: 600px;
+  text-align: center;
+  margin: 20px auto;
+}
