@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/portfolios/new', to: "homes#authenticated"
   get '/portfolios/:id', to: "homes#index"
   get '/stocks/:id', to: "homes#index"
+  get '/users/:id', to: "homes#index"
 
   namespace :api do
     namespace :v1 do
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:index]
+      resources :users, only: [:index, :show]
     end
   end
 

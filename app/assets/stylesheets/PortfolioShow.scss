@@ -40,6 +40,9 @@
         font-weight: 700;
       }
     }
+    .no-button-group {
+      display: none;
+    }
     .button-group {
       display: flex;
       flex-direction: column;

@@ -19,12 +19,42 @@ const PortfolioShow = props => {
   const [isDeleting, setIsDeleting] = useState(false)
 
   const [portfolioName, setPortfolioName] = useState("")
+
+  const [signedIn, setSignedIn] = useState(false)
+  const [userPortfolios, setUserPortfolios] = useState([])
   
   const handleInputChange = event => {
     setPortfolioName(event.currentTarget.value)
   }
 
+  const fetchUser = async () => {
+    try {
+      const response = await fetch(`/api/v1/users`)
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        throw new Error(errorMessage)
+      }
+      const responseBody = await response.json()
+      if (responseBody.signed_in) {
+        setSignedIn(true)
+        setUserPortfolios(responseBody.ids)
+      }
+    } catch (error) {
+      console.error(`Error in Fetch: ${error.message}`)
+    }
+  }
+
   let portfolioId = props.match.params.id
+
+  let buttonGroupClass = "no-button-group"
+  if (signedIn === true && userPortfolios.includes(parseInt(portfolioId)) === true) {
+    buttonGroupClass = "button-group"
+  }
+
+  let searchContainerClass = "search-container"
+  if (signedIn === false) {
+    searchContainerClass = "no-search-container"
+  }
 
   const fetchPortfolio = async () => {
     setIsFetching(true)
@@ -45,6 +75,7 @@ const PortfolioShow = props => {
   }
 
   useEffect(() => {
+    fetchUser()
     fetchPortfolio()
   }, [])
 
@@ -196,7 +227,7 @@ const PortfolioShow = props => {
               <div className="name-container">
                 <h1 className="portfolio-name">{portfolio.name}</h1>
               </div>
-              <div className="button-group">
+              <div className={buttonGroupClass}>
                 <div onClick={updateSetter} className="update-button button">
                   Update Portfolio Name
                 </div>
@@ -215,6 +246,7 @@ const PortfolioShow = props => {
               portfolioHoldingsData={portfolioHoldingsData}
               setPortfolioHoldingsData={setPortfolioHoldingsData}
               setErrors={setErrors}
+              searchContainerClass={searchContainerClass}
             />
             <div className="current-holdings-container">
               <h3>Current Holdings</h3>
@@ -244,7 +276,7 @@ const PortfolioShow = props => {
               <div className="name-container">
                 <h1 className="portfolio-name">{portfolio.name}</h1>
               </div>
-              <div className="button-group">
+              <div className={buttonGroupClass}>
                 <div onClick={updateSetter} className="update-button button">
                   Update Portfolio Name
                 </div>
@@ -263,6 +295,7 @@ const PortfolioShow = props => {
               portfolioHoldingsData={portfolioHoldingsData}
               setPortfolioHoldingsData={setPortfolioHoldingsData}
               setErrors={setErrors}
+              searchContainerClass={searchContainerClass}
             />
             <div className="current-holdings-container">
               <h3>Current Holdings</h3>

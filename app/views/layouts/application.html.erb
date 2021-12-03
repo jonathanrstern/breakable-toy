@@ -16,12 +16,12 @@
     <div class="top-bar-right">
         <% if signed_in? %>
           <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-link"><%= link_to "My Portfolios", "/users/#{current_user.id}" %></li>
             <li class="menu-link"><%= link_to "Create Portfolio", portfolios_new_path %></li>
             <li class="menu-link"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
           </ul>
         <% else %>
           <ul class="menu">
-            <li class="menu-link"><%= link_to "Create Portfolio", portfolios_new_path %></li>
             <li class="menu-link"><%= link_to "Sign In", new_user_session_path %></li>
             <li class="menu-link sign-up-link"><%= link_to "Sign Up", new_user_registration_path %></li>
           </ul>

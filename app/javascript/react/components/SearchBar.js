@@ -5,9 +5,9 @@ const SearchBar = (props) => {
   const [stocks, setStocks] = useState([])
   const [searchString, setSearchString] = useState('')
 
-  let searchContainerClass = ""
+  let suggestionsContainerClass = ""
   if (stocks.length != 0) {
-    searchContainerClass = "search-results-container"
+    suggestionsContainerClass = "search-results-container"
   }
 
   const handleChange = async (event) => {
@@ -59,12 +59,12 @@ const SearchBar = (props) => {
   })
 
   return (
-    <div className="search-container">
+    <div className={props.searchContainerClass}>
       <form>
         <label className="form-label">Add a stock:</label>
         <input autoComplete="off" className="input search-field" placeholder="Search for a company (e.g., AAPL, TSLA, GOOG)" type='text' name='searchString' value={searchString} onChange={handleChange} />
       </form>
-      <div className={searchContainerClass}>
+      <div className={suggestionsContainerClass}>
         {suggestionsList}
       </div>
     </div>
