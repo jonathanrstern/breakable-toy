@@ -18,7 +18,7 @@ export const About = (props) => {
         led me to discover that my personality and ambitions are better suited
         to <i>building</i> new technologies, rather than writing about
         technology as an analyst. I want to be “in the arena,” which is why I
-        enrolled at Launch and am so excited to begin my career a software
+        enrolled at Launch and am so excited to begin my career as a software
         developer!
       </p>
     </div>
