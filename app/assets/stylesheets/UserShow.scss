@@ -1,29 +1,43 @@
 .user-show-container {
-  max-width: 500px;
-  margin: 70px auto 40px;
-  padding: 30px;
-  border: 1px solid #e8e8e8;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px 0 rgba(63, 63, 55, 10%);
-  background-color: #ffffff;
+  max-width: 600px;
+  margin: 0px auto 40px;
+  padding-top: 30px;
+}
+
+.user-show-header-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0px 0px 10px;
+  color: #171717;
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .user-show-header {
+  display: flex;
   font-size: 1.7em;
   font-weight: 700;
   text-align: left;
-  padding: 0px 0px 10px;
-  color: #171717;
+}
+
+.user-show-header-container .button {
+  display: flex;
+  font-size: .8em;
+  border-radius: 50px;
+}
+
+.user-show-list {
+  padding-top: 20px;
 }
 
 .user-portfolio-container {
   margin: auto;
-  padding: 8px 0px;
+  padding-bottom: 12px;
 }
 
 .user-portfolio-container a {
   text-decoration: none;
-  color: #666666;
+  color: #333333;
   font-weight: 400;
 }
 .user-portfolio-container a:hover {

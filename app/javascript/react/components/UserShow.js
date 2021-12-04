@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import UserPortfolioTile from "./UserPortfolioTile"
 
 const UserShow = props => {
@@ -38,7 +39,10 @@ const UserShow = props => {
 
   return (
     <div className="user-show-container">
-      <h1 className="user-show-header">My Portfolios</h1>
+      <div className="user-show-header-container">
+        <h1 className="user-show-header">My Portfolios</h1>
+        <Link to="/portfolios/new" className="button">Create a portfolio</Link>
+      </div>
       <div className="user-show-list">{portfolioNames}</div>
     </div>
   )
